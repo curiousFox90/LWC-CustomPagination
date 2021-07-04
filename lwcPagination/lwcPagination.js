@@ -85,7 +85,7 @@ totalPages;
         getContactRecords({contactName : this.searchKeyword})
         .then(con =>{
             this.contactsRecords = [...con.slice(start,end)];
-            this.totalPages = Math.ceil(acc.length/this.recordsize);
+            this.totalPages = Math.ceil(con.length/this.recordsize);
         })
         .catch(error=>{
             console.log(error);
