@@ -1,0 +1,87 @@
+<template>
+    <lightning-card title='LWC Custom Pagination' icon-name="custom:custom37" >
+        <lightning-layout  multiple-rows="true" vertical-align='end'>
+            <lightning-layout-item class='slds-m-around_medium'>
+                <lightning-combobox
+                    name="object"
+                    label="Select Object"
+                    value={objectName}
+                    options={optionsObject}
+                    onchange={selectObjectsName} >
+                </lightning-combobox>
+            </lightning-layout-item>
+        
+            <lightning-layout-item class='slds-m-around_medium'>
+                <lightning-input
+                    label='Enter a keyword'
+                    name='keyword'
+                    onchange={processKeyword}   
+                    value={searchKeyword}
+                >
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item class='slds-m-around_medium'>
+                <lightning-button
+                    label='Search Records'
+                    onclick={handleSearchRecords}
+                    variant ='brand'
+                    icon-name="utility:search"
+                    icon-position="right"
+                >
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <template if:true={showAccountDataTable}>
+            <lightning-card title='LMS Accounts Data Table' icon-name="standard:account">
+                <lightning-datatable
+                        key-field="id"
+                        data={accountRecords}
+                        columns={accountColumns}>
+                </lightning-datatable>
+            </lightning-card>
+        </template>
+
+        <template if:true={showContactDataTable}>
+            <lightning-card title='LMS Contacts Data Table' icon-name="standard:contact">
+                <lightning-datatable
+                        key-field="id"
+                        data={contactsRecords}
+                        columns={contactColumns}>
+                </lightning-datatable>
+            </lightning-card>    
+        </template>
+
+        <template if:true={enablePagination}>
+            <lightning-layout class="slds-align_absolute-center" >
+                <lightning-layout-item>
+                    <lightning-button
+                        label='Previous'
+                        onclick={handlePrevious}
+                        variant ='brand'
+                        icon-name="utility:left"
+                        disabled={disablePrevious}
+                    >
+                </lightning-button>
+                </lightning-layout-item>
+
+                <lightning-layout-item class='slds-m-around_medium'>
+                    <p>Page : {currentPage} of {totalPages}</p>
+                </lightning-layout-item>
+
+                <lightning-layout-item >
+                    <lightning-button
+                        label='Next'
+                        onclick={handleNext}
+                        variant ='brand'
+                        icon-name="utility:right"
+                        icon-position="right"
+                        disabled={disableNext}
+                    >
+                </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+    </lightning-card>
+</template>
