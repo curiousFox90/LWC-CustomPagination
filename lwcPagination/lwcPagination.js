@@ -8,7 +8,6 @@ contactsRecords;
 searchKeyword;
 selectObjectName;
 objectName;
-enablePagination = false;
 showAccountDataTable = false;
 showContactDataTable = false;
 
@@ -61,7 +60,6 @@ totalPages;
     handleAccountSearch = () =>{
         this.showAccountDataTable = true;
         this.showContactDataTable = false;
-        this.enablePagination = true;
 
         const start = (this.currentPage-1)*this.recordsize;
         const end = this.recordsize*this.currentPage;
@@ -80,7 +78,6 @@ totalPages;
     handleContactSearch = () =>{
         this.showContactDataTable = true;
         this.showAccountDataTable = false;
-        this.enablePagination = true;
 
         const start = (this.currentPage-1)*this.recordsize;
         const end = this.recordsize*this.currentPage;
@@ -119,6 +116,10 @@ totalPages;
             }
             
         }
+    }
+
+    get enablePagination(){
+        return this.showContactDataTable || this.showAccountDataTable;
     }
 
     get disableNext(){
