@@ -44,7 +44,10 @@ totalPages;
     }
 
     handleSearchRecords = () =>{
-
+        
+        this.currentPage=1;
+        this.recordsize =5;
+        
         switch (this.objectName) {
             case 'account': this.handleAccountSearch();
             break;
